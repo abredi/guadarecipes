@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: opalgroup
+  api_key: '422561824592983'
+  api_secret: AGX8942-BeYy0GLGbifJjpjqRhs
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: opalgroup
+  api_key: '422561824592983'
+  api_secret: AGX8942-BeYy0GLGbifJjpjqRhs
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: opalgroup
+  api_key: '422561824592983'
+  api_secret: AGX8942-BeYy0GLGbifJjpjqRhs
+  enhance_image_tag: true
+  static_file_support: false
