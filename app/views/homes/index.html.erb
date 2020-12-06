@@ -1,0 +1,14 @@
+<h1>Home#index</h1>
+
+<%= form_with(url: "/homes", method: "post") do |f|%>
+  <% @products.each do |product| %>
+    <div>
+      <h2> <%= product.name %> </h2>
+        <div> <%= product.price %> </div>
+          <p> <%= product.desc %> </p>
+          <div>  <%= check_box_tag (product.id) %> <div>
+    </div>
+  <% end %>
+
+  <%= f.submit "Buy", disable_with: 'Shopping...' %>
+<% end %>
