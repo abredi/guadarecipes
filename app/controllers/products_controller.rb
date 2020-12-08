@@ -7,10 +7,6 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
-    puts '*********'
-    puts Digest::UUID.uuid_v5("ae279f4c-6327-47c6-b53c-05a3f10dd0c6", "bar")
-    puts '*********'
-    # puts uuid_from_hash(Digest::SHA1, Digest::UUID::DNS_NAMESPACE, 'www.rubycademy.com')
   end
 
   # GET /products/1

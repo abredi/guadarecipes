@@ -4,9 +4,11 @@
   <% @products.each do |product| %>
     <div>
       <h2> <%= product.name %> </h2>
-        <div> <%= product.price %> </div>
-          <p> <%= product.desc %> </p>
-          <div>  <%= check_box_tag (product.id) %> <div>
+      <div> <%= product.price %> </div>
+      <p> <%= product.desc %> </p>
+      <div>  
+        <input id="<%= product.id %>" name="orders[<%=product.id%>]" type="checkbox" value="<%= product.id %>" />
+      <div>
     </div>
   <% end %>
 

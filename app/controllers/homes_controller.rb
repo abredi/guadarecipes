@@ -1,40 +1,47 @@
 class HomesController < ApplicationController
+  include HomeHelper
+
   before_action :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:edit, :update, :destory]
 
   def index
     @products = Product.all
-  
-    puts '****************'
-    puts @products.inspect
-    puts '****************'
   end
 
   def show
-  end
-
-  def destroy
-  end
-
-  def create
-    puts '*******Hello*********'
-    puts params.inspect
+    @zenbil = Order.cart(get_zenbil)
+    puts '****************'
+    puts @zenbil.inspect
     puts '****************'
   end
 
-  def edit
+  def destroy; end
+
+  def create
+    product_params.each do |order, i|
+      set_zenbil
+      @order = current_user.orders.build(product_id: order.to_i, zenbil: get_zenbil)
+      if @order.save
+        # format.json { render :show, status: :created, location: @order }
+      else
+        puts 'error'
+      end
+    end
+    redirect_to home_url(:id => get_zenbil) and return
+    # format.html { redirect_to home_url, notice: 'Event was successfully destroyed.' }
   end
 
-  def update
-  end
+  def edit; end
+
+  def update; end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_product
     @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:order).permit(product_id: [])
+    params.require(:orders).permit!
   end
 end
