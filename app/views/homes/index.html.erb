@@ -1,16 +1,31 @@
 <h1>Home#index</h1>
 
-<%= form_with(url: "/homes", method: "post") do |f|%>
+
+<%= form_with(url: "/homes", method: "post") do |f| %>
   <% @products.each do |product| %>
     <div>
       <h2> <%= product.name %> </h2>
       <div> <%= product.price %> </div>
       <p> <%= product.desc %> </p>
-      <div>  
-        <input id="<%= product.id %>" name="orders[<%=product.id%>]" type="checkbox" value="<%= product.id %>" />
-      <div>
+      <div style="display: flex; justify-content: space-between; width: 14em;">
+<!--        <input id="<%#= product.id %>" name="orders[<%#= product.id %>]" type="checkbox" value="<%#= product.id %>"/>-->
+        <%= link_to home_path(product.id), remote: true, method: :put, disable_with: "Processing..." do %>
+          <%= tag.span 'Add To Cart', id: "addToCart_" + product.id.to_s %>
+        <% end %>
+
+        <%= link_to home_path(product.id), remote: true, method: :put, disable_with: "Processing..." do %>
+          <%= tag.span '+', id: "addMoreToCart_" + product.id.to_s  %>
+        <% end %>
+
+        <span id="totalProduct_<%= product.id %>"><%= '0' %></span>
+
+        <%= link_to home_path(product.id), remote: true, method: :delete, disable_with: "Processing..." do %>
+          <%= tag.span '-', id: "removeFromCart_" + product.id.to_s  %>
+        <% end %>
+
+      </div>
     </div>
   <% end %>
 
-  <%= f.submit "Buy", disable_with: 'Shopping...' %>
+  <%= f.submit "Buy", class: 'btn', disable_with: 'Shopping...' %>
 <% end %>

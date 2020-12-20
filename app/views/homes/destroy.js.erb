@@ -1,0 +1,12 @@
+<% if @all_product_orders.length > 0 %>
+  document.getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>).innerText = "View Cart";
+  document
+      .getElementById('totalProduct_' +<%= @product.id.to_s %>)
+      .innerText = "<%= @all_product_orders.length %>";
+<% else %>
+  document.getElementById('addToCart_' +<%= @product.id.to_s %>).innerText = "Add To Cart";
+  document
+      .getElementById('totalProduct_' +<%= @product.id.to_s %>)
+      .innerText = '0';
+<% end %>
+

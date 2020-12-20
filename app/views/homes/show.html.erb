@@ -1,2 +1,4 @@
-<h1>Homes#show</h1>
-<p>Find me in app/views/homes/show.html.erb</p>
+<% @zenbil.each_with_index { |order, index| %>
+  <p class="bg-gray-50"> <b><%= index %></b>, &nbsp;  <%= order.name %> &nbsp;  <%= order.pieces %> </p>
+<% } %>
+
