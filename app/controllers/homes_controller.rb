@@ -16,8 +16,15 @@ class HomesController < ApplicationController
 
   def destroy
     unless @all_product_orders.empty?
-      @deleted_order = Order.destroy(@all_product_orders[0].id)
-      @all_product_orders = @all_product_orders.drop(1)
+      if params[:all].eql?('  1')
+        Order.where(product_id: @product.id, zenbil: get_zenbil).destroy_all
+        @all_product_orders = @all_product_orders.map do |order|
+          order unless order.product_id.eql?(@product.id)
+        end
+      else
+        @deleted_order = Order.destroy(@all_product_orders[0].id)
+        @all_product_orders = @all_product_orders.drop(1)
+      end
     end
 
     respond_to do |format|

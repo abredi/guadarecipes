@@ -1,12 +1,29 @@
+addBtn = document.getElementById('addToCart_' +<%= @product.id.to_s %>)
+totalP = document.getElementById('totalProduct_' +<%= @product.id.to_s %>)
+productCard = document.getElementById('product_' +<%= @product.id.to_s %>)
+
+if (productCard) {
+    productCard.parentElement.removeChild(productCard)
+}
+
 <% if @all_product_orders.length > 0 %>
-  document.getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>).innerText = "View Cart";
-  document
-      .getElementById('totalProduct_' +<%= @product.id.to_s %>)
-      .innerText = "<%= @all_product_orders.length %>";
+  if (addBtn) {
+      addBtn.innerText = "View Cart";
+  }
+
+  if (totalP) {
+      totalP.innerText = "<%= @all_product_orders.length %>";
+  }
+
 <% else %>
-  document.getElementById('addToCart_' +<%= @product.id.to_s %>).innerText = "Add To Cart";
-  document
-      .getElementById('totalProduct_' +<%= @product.id.to_s %>)
-      .innerText = '0';
+
+  if (addBtn) {
+      addBtn.innerText = "Add To Cart";
+  }
+
+  if (totalP) {
+      totalP.innerText = '0';
+  }
+
 <% end %>
 
