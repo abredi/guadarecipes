@@ -1,21 +1,19 @@
+addBtn = document.getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>)
 <% if @all_product_orders.length > 0 %>
-  document
-     .getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>).innerText = "View Cart";
-  document
-    .getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>)
-    .parentElement.removeAttribute("data-remote")
-  document
-    .getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>)
-    .parentElement.removeAttribute("data-method")
+    if (addBtn) {
+        addBtn.innerText = "View Cart";
+        addBtn.parentElement.removeAttribute("data-remote")
+        addBtn.parentElement.removeAttribute("data-method")
+    }
 <% else %>
-  document.getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>)
-      .innerText = "Add To Cart";
-  document
-    .getElementById('addToCart_' +<%= @all_product_orders[0].product_id.to_s %>)
-    .parentElement.setAttribute("data-method", "put")
+    if (addBtn) {
+        addBtn.innerText = "Add To Cart";
+        addBtn.parentElement.setAttribute("data-remote", "true")
+        parentElement.setAttribute("data-method", "put")
+    }
 <% end %>
 
 document
-    .getElementById('totalProduct_' +<%= @all_product_orders[0].product_id.to_s %>)
-    .innerText = "<%= @all_product_orders.length %>";
+        .getElementById('totalProduct_' +<%= @all_product_orders[0].product_id.to_s %>)
+        .innerText = "<%= @all_product_orders.length %>";
 

@@ -37,7 +37,7 @@
                     </g>
                   </svg>
                 <% end %>
-                <p class="andika text-bold mx-1 text-xl text-gray-500"><%= order.pieces %></p>
+                <p id="totalProduct_<%= order.id %>" class="andika text-bold mx-1 text-xl text-gray-500"><%= order.pieces %></p>
                 <%= link_to home_path(order.id),
                             class: "rounded-xl mx-1 p-2 border border-transparent hover:border-white
                      hover:bg-red-300 bg-red-200 text-white",
@@ -89,6 +89,7 @@
     </div>
   </div>
 </section>
+
 
 
 
