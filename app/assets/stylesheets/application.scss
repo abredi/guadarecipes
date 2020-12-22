@@ -13,3 +13,62 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic:ital@0;1&family=Comfortaa:wght@300;400;500;600;700&family=Langar&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Ranchers&family=Roboto:wght@400;500&display=swap');
+
+.bg-img-top {
+  background-image: url('banner-spices.jpg');
+}
+
+.andika {
+  font-family: 'Andika New Basic', sans-serif;
+}
+
+.comfortaa {
+  font-family: 'Comfortaa', cursive;
+}
+
+.langar {
+  font-family: 'Langar', cursive;
+}
+
+.ranchers {
+  font-family: 'Ranchers', cursive;
+}
+
+.playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.fon-300 {
+  font-weight: 300;
+}
+
+.fon-400 {
+  font-weight: 400;
+}
+
+.fon-500 {
+  font-weight: 500;
+}
+
+.fon-600 {
+  font-weight: 600;
+}
+
+.fon-700 {
+  font-weight: 700;
+}
+
+.fon-800 {
+  font-weight: 800;
+}
+
+.fon-900 {
+  font-weight: 900;
+}
+

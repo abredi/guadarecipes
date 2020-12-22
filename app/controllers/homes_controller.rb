@@ -12,9 +12,6 @@ class HomesController < ApplicationController
 
   def show
     @zenbil = Order.cart(get_zenbil)
-    puts '****************'
-    puts @zenbil.inspect
-    puts '****************'
   end
 
   def destroy
