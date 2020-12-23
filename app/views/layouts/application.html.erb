@@ -38,8 +38,14 @@
         <div class="flex flex-col md:flex-row md:mx-6">
           <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
              href="<%= root_path %>">Home</a>
-          <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
-             href="<%= root_path %>#shop">Shop</a>
+          <% if user_signed_in? %>
+            <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
+               href="<%= root_path %>#shop">Sign out</a>
+          <% else %>
+            <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
+               href="<%= root_path %>#shop">Shop</a>
+          <% end %>
+
         </div>
 
         <div class="flex justify-center md:block">

@@ -12,11 +12,15 @@ class HomesController < ApplicationController
 
   def show
     @zenbil = Order.cart(get_zenbil)
+
+    # @sub_total = @zenbil.reduce()
   end
 
   def destroy
     unless @all_product_orders.empty?
+      @whole_product = false
       if params[:all].eql?('  1')
+        @whole_product = true
         Order.where(product_id: @product.id, zenbil: get_zenbil).destroy_all
         @all_product_orders = @all_product_orders.map do |order|
           order unless order.product_id.eql?(@product.id)
