@@ -7,7 +7,7 @@ class HomesController < ApplicationController
   before_action :set_product, :set_all_product, only: %i[edit update destroy]
 
   def index
-    @products = Product.all
+    @products = Product.cart(get_zenbil)
   end
 
   def show
@@ -19,7 +19,7 @@ class HomesController < ApplicationController
   def destroy
     unless @all_product_orders.empty?
       @whole_product = false
-      if params[:all].eql?('  1')
+      if params[:all].eql?('1')
         @whole_product = true
         Order.where(product_id: @product.id, zenbil: get_zenbil).destroy_all
         @all_product_orders = @all_product_orders.map do |order|
