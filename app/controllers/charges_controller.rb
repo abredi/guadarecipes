@@ -24,11 +24,13 @@ class ChargesController < ApplicationController
                                                  payment_method_types: ['card'],
                                                  line_items: line_items,
                                                  mode: 'payment',
-                                                 success_url: "#{root_url}/charges/success",
-                                                 cancel_url: "#{root_url}/charges/cancel"
+                                                 success_url: "#{root_url}charges/#{get_zenbil}/success",
+                                                 cancel_url: "#{root_url}charges/#{get_zenbil}/cancel"
                                                })
 
     # { id: session.id }.to_json
+
+    set_payment_session(session)
 
     respond_to do |format|
       msg = { status: 'ok', message: 'Success!', html: '<b>...</b>', id: session.id }
@@ -37,16 +39,20 @@ class ChargesController < ApplicationController
   end
 
   def success
-    session = Stripe::Checkout::Session.retrieve(params[:session_id])
-    @customer = Stripe::Customer.retrieve(session.customer)
+    # return false unless get_payment_session
+    #
+    # session = Stripe::Checkout::Session.retrieve(get_payment_session)
+    # @customer = Stripe::Customer.retrieve(session.customer)
+
+    Order.where(zenbil: params[:id]).update_all(status: :paid)
+
     respond_to do |format|
       format.html { render :success }
     end
   end
 
   def cancel
-    respond_to do |format|
-      format.html { render :cancel }
-    end
+    flash[:warn] = 'The payment process is not finished.'
+    redirect_to root_path
   end
 end

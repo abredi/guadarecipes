@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :charges, only: [] do
+  resources :charges, only: [:create] do
     member do
       get 'success'
       get 'cancel'
