@@ -2,15 +2,18 @@
 <html lang="en">
   <head>
     <title>Guada spices</title>
+    <script src="https://js.stripe.com/v3/"></script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-  <nav class="bg-white top-0 inset-x-0 fixed w-screen shadow">
+  <nav class="bg-white top-0 inset-x-0 fixed w-screen shadow z-10">
     <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
       <div class="flex justify-between items-center">
         <div>
@@ -39,8 +42,7 @@
           <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
              href="<%= root_path %>">Home</a>
           <% if user_signed_in? %>
-            <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
-               href="<%= root_path %>#shop">Sign out</a>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"%>
           <% else %>
             <a class="my-1 text-md text-gray-700 font-light hover:text-red-500 md:mx-4 md:my-0"
                href="<%= root_path %>#shop">Shop</a>

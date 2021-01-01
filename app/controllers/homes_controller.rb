@@ -1,10 +1,11 @@
-# frozen_string_literal: true
+require 'json'
 
 class HomesController < ApplicationController
-  include HomeHelper
+  Stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
 
   # before_action :authenticate_user!
   before_action :set_product, :set_all_product, only: %i[edit update destroy]
+  before_action :summary, only: %i[show edit update destroy]
 
   def index
     @products = Product.cart(get_zenbil)
@@ -12,8 +13,6 @@ class HomesController < ApplicationController
 
   def show
     @zenbil = Order.cart(get_zenbil)
-
-    # @sub_total = @zenbil.reduce()
   end
 
   def destroy
@@ -68,6 +67,27 @@ class HomesController < ApplicationController
     end
   end
 
+  def checkout
+    session = Stripe::Checkout::Session.create({
+                                                 payment_method_types: ['card'],
+                                                 line_items: [{
+                                                   price_data: {
+                                                     currency: 'usd',
+                                                     product_data: {
+                                                       name: 'T-shirt'
+                                                     },
+                                                     unit_amount: 2000
+                                                   },
+                                                   quantity: 1
+                                                 }],
+                                                 mode: 'payment',
+                                                 success_url: "https://yoursite.com/success.html",
+                                                 cancel_url: 'https://example.com/cancel',
+                                               })
+
+    { id: session.id }.to_json
+  end
+
   private
 
   def set_product
@@ -80,5 +100,17 @@ class HomesController < ApplicationController
 
   def product_param
     params.require(:id).to_i
+  end
+
+  def summary
+    @order_summary = { estimated_total: 0, total_product: 0 }
+    @zenbil = Order.cart(get_zenbil)
+
+    if @zenbil && !@zenbil.empty?
+      @order_summary[:estimated_total] = @zenbil.map { |order| order.price * order.pieces }.reduce(:+)
+      @order_summary[:total_product] = @zenbil.length
+    end
+
+    @order_summary
   end
 end

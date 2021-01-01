@@ -18,3 +18,16 @@ document
         .getElementById('totalProduct_' +<%= @all_product_orders[0].product_id.to_s %>)
         .innerText = "<%= @all_product_orders.length %>";
 
+ et = document
+    .getElementById('estimated_total');
+ tp = document
+    .getElementById('total_product');
+
+if (et) {
+    et.innerText = "<%= @order_summary[:estimated_total] %>"
+}
+
+if (tp) {
+    tp.innerText = "<%= @order_summary[:total_product] %>"
+}
+
