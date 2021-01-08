@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :charges, only: [:create] do
+    member do
+      get 'success'
+      get 'cancel'
+    end
+  end
+
+  resources :homes
+  resources :orders
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
   resources :products
-  root to: 'products#index'
+
+  root to: 'homes#index'
 end
