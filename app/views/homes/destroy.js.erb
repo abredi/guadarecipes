@@ -1,0 +1,32 @@
+addBtn = document.getElementById('addToCart_' +<%= @product.id.to_s %>)
+totalP = document.getElementById('totalProduct_' +<%= @product.id.to_s %>)
+productCard = document.getElementById('product_' +<%= @product.id.to_s %>)
+
+
+<% if @whole_product %>
+      if (productCard) {
+          productCard.parentElement.removeChild(productCard)
+      }
+<% end %>
+
+<% if @all_product_orders.length > 0 %>
+  if (addBtn) {
+      addBtn.innerText = "View Cart";
+  }
+
+  if (totalP) {
+      totalP.innerText = "<%= @all_product_orders.length %>";
+  }
+
+<% else %>
+
+  if (addBtn) {
+      addBtn.innerText = "Add To Cart";
+  }
+
+  if (totalP) {
+      totalP.innerText = '0';
+  }
+
+<% end %>
+

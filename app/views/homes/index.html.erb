@@ -1,0 +1,14 @@
+<%= render 'heading' %>
+
+<section class="bg-gray-100 py-6" id="shop">
+  <%= render 'search' %>
+  <div class="container mx-auto flex justify-center flex-wrap my-12">
+    <% @products.each do |product| %>
+      <%= render 'product', product: product %>
+    <% end %>
+  </div>
+</section>
+
+
+
+
