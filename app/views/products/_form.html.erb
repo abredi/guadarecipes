@@ -1,37 +1,39 @@
-<%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<div class="flex justify-center items-center mt-24">
+  <%= form_with(model: product, local: true) do |form| %>
+    <% if product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="flex py-2">
+      <%= form.label :name, class: 'text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap' %>
+      <%= form.text_field :name, class:"border border-2 rounded-r px-4 py-2 w-full" %>
+    </div>
+
+    <div class="flex py-2">
+      <%= form.label :desc, class: 'text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap' %>
+      <%= form.text_area :desc, class:"border border-2 rounded-r px-4 py-2 w-full" %>
+    </div>
+
+    <div class="flex py-2">
+      <%= form.label :price, class: 'text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap' %>
+      <%= form.text_field :price, class:"border border-2 rounded-r px-4 py-2 w-full" %>
+    </div>
+
+    <div class="flex py-2">
+      <%= form.label :files, class: 'text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap' %>
+      <%= form.file_field :files, multiple: true, direct_upload: true, class:"border border-2 rounded-r px-4 py-2 w-full" %>
+    </div>
+
+    <div class="flex py-2">
+      <%= form.submit class: "bg-gray-600 hover:bg-blue-dark text-white font-bold py-2 px-6 rounded" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :desc %>
-    <%= form.text_area :desc %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :files %>
-    <%= form.file_field :files, multiple: true, direct_upload: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
