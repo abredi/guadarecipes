@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.2'
 
 gem 'stripe'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'cloudinary', '~> 1.18', '>= 1.18.1'
 gem 'devise', '~> 4.7', '>= 4.7.3'
+
+gem "tailwindcss-rails", "~> 0.3.3"
